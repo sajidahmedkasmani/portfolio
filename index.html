@@ -1,698 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sajid Ahmed Kasmani | Full Stack Developer & Data Scientist</title>
-  <!-- Google Fonts & FontAwesome Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root {
-      --bg-dark: #0b0f19;
-      --bg-card: #111827;
-      --bg-card-hover: #1f293d;
-      --primary: #00d4ff;
-      --secondary: #7c3aed;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Scrollbar Styling */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-dark);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1f293d;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--primary);
-    }
-
-    /* Container */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Navigation */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(11, 15, 25, 0.85);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 70px;
-    }
-
-    .logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: var(--primary);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-main);
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding-top: 80px;
-      background: radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.12) 0%, transparent 40%),
-                  radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.12) 0%, transparent 40%);
-    }
-
-    .hero-content h3 {
-      color: var(--primary);
-      font-family: 'Fira Code', monospace;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-
-    .hero-content h2 {
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      color: var(--text-muted);
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-content p {
-      max-width: 600px;
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.8rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), #0088ff);
-      color: #000;
-    }
-
-    .btn-primary:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px -10px rgba(0, 212, 255, 0.5);
-    }
-
-    .btn-outline {
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    /* Global Section Layout */
-    section {
-      padding: 100px 0;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .section-title::after {
-      content: '';
-      height: 1px;
-      flex: 1;
-      background: var(--border-color);
-    }
-
-    .section-title span {
-      color: var(--primary);
-      font-family: 'Fira Code', monospace;
-      font-size: 1.2rem;
-    }
-
-    /* About Section */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .about-text p {
-      color: var(--text-muted);
-      margin-bottom: 1.2rem;
-      font-size: 1.05rem;
-    }
-
-    .about-highlights {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .highlight-item {
-      background: var(--bg-card);
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
-    }
-
-    .highlight-item i {
-      color: var(--primary);
-      margin-right: 0.5rem;
-    }
-
-    /* Tech Stack Section */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .skill-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.8rem;
-      transition: var(--transition);
-    }
-
-    .skill-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(0, 212, 255, 0.3);
-      background: var(--bg-card-hover);
-    }
-
-    .skill-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .skill-card h3 i {
-      color: var(--primary);
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-
-    .tag {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-color);
-      padding: 0.4rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-family: 'Fira Code', monospace;
-    }
-
-    /* Projects Section */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition);
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0, 212, 255, 0.4);
-    }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .folder-icon {
-      font-size: 2.2rem;
-      color: var(--primary);
-    }
-
-    .project-links a {
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      margin-left: 1rem;
-      transition: var(--transition);
-    }
-
-    .project-links a:hover {
-      color: var(--primary);
-    }
-
-    .project-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .project-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .project-tech {
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.8rem;
-      color: var(--primary);
-    }
-
-    /* Contact Section */
-    .contact {
-      text-align: center;
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    .contact h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .contact p {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .social-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-main);
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: var(--transition);
-    }
-
-    .social-icon:hover {
-      color: var(--primary);
-      border-color: var(--primary);
-      transform: translateY(-3px);
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border-color);
-      padding: 2rem 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: var(--bg-dark);
-        flex-direction: column;
-        padding: 2rem;
-        border-bottom: 1px solid var(--border-color);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .about-highlights {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sajid Ahmed Kasmani | Full Stack Developer & Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0c0716;--ink:#f4f0ff;--mut:#a79fc0;--card:rgba(255,255,255,.045);--line:rgba(255,255,255,.12);--a:#ff4d8d;--b:#22d3ee;--c:#8b5cf6;--dot:255,255,255;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root{color-scheme:light;--bg:#f7f4ff;--ink:#1a1030;--mut:#5e5478;--card:rgba(26,16,48,.05);--line:rgba(26,16,48,.14);--dot:60,30,120}}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Space Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace}
+#bg{position:fixed;inset:0;z-index:0;width:100%;height:100%}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.35;z-index:0;animation:float 18s ease-in-out infinite alternate}
+.b1{width:420px;height:420px;background:var(--c);top:-100px;left:-80px}
+.b2{width:380px;height:380px;background:var(--a);bottom:-120px;right:-60px;animation-delay:-6s}
+.b3{width:300px;height:300px;background:var(--b);top:40%;left:55%;animation-delay:-11s;opacity:.2}
+@keyframes float{to{transform:translate(90px,-70px) scale(1.25)}}
+main,header,footer{position:relative;z-index:2}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--a),var(--b));z-index:100}
+#glow{position:fixed;width:360px;height:360px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(139,92,246,.22),transparent 65%);transform:translate(-50%,-50%);left:-999px;top:-999px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+header{position:fixed;top:0;left:0;right:0;padding-top:env(safe-area-inset-top,0px);backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 70%,transparent);border-bottom:1px solid var(--line);z-index:50}
+nav{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-weight:700;font-size:1.2rem;color:var(--ink);text-decoration:none}
+.logo b{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav ul{display:flex;gap:1.8rem;list-style:none}
+nav ul a{color:var(--mut);text-decoration:none;font-size:.95rem;position:relative}
+nav ul a::after{content:'';position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--a);transition:width .3s}
+nav ul a:hover{color:var(--ink)}nav ul a:hover::after{width:100%}
+a:focus-visible,button:focus-visible{outline:2px solid var(--b);outline-offset:3px}
+.hero{min-height:100vh;display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center;padding:110px 0 60px}
+.hi{color:var(--b);font-size:1rem;margin-bottom:.8rem;opacity:0;animation:up .8s .1s forwards}
+h1{font-size:clamp(2.8rem,7.5vw,5.6rem);line-height:1;font-weight:700;letter-spacing:-.03em;background:linear-gradient(100deg,var(--ink) 20%,var(--a) 45%,var(--b) 70%,var(--ink) 90%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:up .9s .25s forwards,shine 6s linear infinite;opacity:0}
+@keyframes shine{to{background-position:-250% 0}}
+@keyframes up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.role{font-size:clamp(1.2rem,2.6vw,1.8rem);margin:1.2rem 0;min-height:2.4em;color:var(--mut);opacity:0;animation:up .8s .5s forwards}
+.role span{color:var(--ink);border-right:3px solid var(--a);padding-right:4px;animation:blink .8s step-end infinite}
+@keyframes blink{50%{border-color:transparent}}
+.lead{max-width:520px;color:var(--mut);margin-bottom:2rem;opacity:0;animation:up .8s .7s forwards}
+.btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:up .8s .9s forwards}
+.btn{display:inline-block;padding:.9rem 1.7rem;border-radius:999px;font-weight:600;text-decoration:none;font-size:.95rem;transition:transform .25s,box-shadow .3s;will-change:transform}
+.p{background:linear-gradient(120deg,var(--a),var(--c));color:#fff;box-shadow:0 10px 30px -10px var(--a)}
+.p:hover{box-shadow:0 14px 40px -6px var(--a)}
+.o{border:1px solid var(--line);color:var(--ink);background:var(--card)}
+.o:hover{border-color:var(--b)}
+.code{perspective:900px}
+.win{background:rgba(14,8,28,.82);color:#f4f0ff;border:1px solid var(--line);border-radius:16px;box-shadow:0 30px 80px -20px rgba(139,92,246,.6);transition:transform .15s;transform-style:preserve-3d;animation:bob 5s ease-in-out infinite alternate;overflow:hidden}
+@keyframes bob{to{margin-top:-14px}}
+.bar{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.bar i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.win pre{padding:18px;font-size:.82rem;line-height:1.7;min-height:250px;white-space:pre-wrap;color:#cfc6ee}
+.k{color:#ff7ab0}.s{color:#7ee7f7}.n{color:#c4b0ff}
+.scroll{position:absolute;bottom:22px;left:50%;width:22px;height:36px;border:2px solid var(--mut);border-radius:12px;transform:translateX(-50%)}
+.scroll::after{content:'';position:absolute;top:6px;left:50%;width:4px;height:7px;margin-left:-2px;border-radius:2px;background:var(--a);animation:wheel 1.6s infinite}
+@keyframes wheel{to{transform:translateY(12px);opacity:0}}
+.marq{overflow:hidden;border-block:1px solid var(--line);padding:16px 0;background:var(--card);transform:rotate(-1.2deg);margin:20px -20px}
+.track{display:flex;gap:2.5rem;width:max-content;animation:scrollx 28s linear infinite;font-size:1.5rem;font-weight:700;white-space:nowrap}
+.track span:nth-child(even){color:transparent;-webkit-text-stroke:1px var(--mut)}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+section{padding:110px 0}
+h2{font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.02em;margin-bottom:2.5rem;line-height:1.1}
+h2 em{font-style:normal;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.rv.on{opacity:1;transform:none}
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;align-items:center}
+.about p{color:var(--mut);margin-bottom:1.1rem;font-size:1.05rem;max-width:62ch}
+.about strong{color:var(--ink)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.4rem}
+.stat b{display:block;font-size:2.6rem;line-height:1;background:linear-gradient(120deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--mut);font-size:.9rem}
+.stat:nth-child(2){transform:translateY(24px)}.stat:nth-child(4){transform:translateY(24px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.3rem}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.7rem;overflow:hidden;transform-style:preserve-3d;transition:transform .2s,border-color .3s}
+.card::before{content:'';position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,77,141,.22),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover{border-color:var(--a)}.card:hover::before{opacity:1}
+.card h3{font-size:1.2rem;margin-bottom:1rem}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:.35rem .75rem;border:1px solid var(--line);border-radius:999px;color:var(--mut);transition:.25s}
+.tag:hover{background:var(--a);color:#fff;border-color:var(--a);transform:translateY(-3px) rotate(-3deg)}
+.proj{display:flex;flex-direction:column;gap:.9rem;min-height:290px}
+.proj .ic{font-size:2.2rem}
+.proj p{color:var(--mut);font-size:.95rem;flex:1}
+.proj .tech{display:flex;gap:.7rem;flex-wrap:wrap;color:var(--b);font-size:.8rem}
+.proj a{color:var(--ink);text-decoration:none;font-size:.9rem;font-weight:600}
+.proj a:hover{color:var(--a)}
+.contact{text-align:center}
+.contact h2{font-size:clamp(2.4rem,8vw,5.5rem)}
+.contact p{color:var(--mut);max-width:560px;margin:0 auto 2.2rem}
+.soc{display:flex;justify-content:center;gap:1rem;margin-top:2.4rem;flex-wrap:wrap}
+.soc a{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;font-weight:700;font-size:.9rem;transition:.3s}
+.soc a:hover{background:linear-gradient(120deg,var(--a),var(--c));color:#fff;transform:translateY(-6px) rotate(8deg);box-shadow:0 12px 24px -8px var(--a)}
+footer{border-top:1px solid var(--line);padding:2rem 0;text-align:center;color:var(--mut);font-size:.9rem}
+@media (max-width:820px){nav ul{gap:1rem}.hero,.about{grid-template-columns:1fr}.code{display:none}section{padding:80px 0}}
+@media (max-width:480px){nav ul li:nth-child(1){display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hi,h1,.role,.lead,.btns,.rv{opacity:1!important;transform:none!important}}
+</style>
 </head>
 <body>
+<div id="prog"></div><div id="glow"></div>
+<canvas id="bg"></canvas>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
 
-  <!-- Navigation Bar -->
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#" class="logo">SAJID<span>.dev</span></a>
-        <div class="menu-toggle" id="menuToggle">
-          <i class="fas fa-bars"></i>
-        </div>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+<header><div class="wrap"><nav>
+<a class="logo" href="#top">SAJID<b>.dev</b></a>
+<ul><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li></ul>
+</nav></div></header>
+
+<main id="top">
+<div class="wrap hero" style="position:relative">
+  <div>
+    <div class="hi mono">&gt; hello_world(), it’s me</div>
+    <h1 id="name">Sajid Ahmed Kasmani</h1>
+    <div class="role">I’m a <span id="typed"></span></div>
+    <p class="lead">I build end-to-end web apps and turn raw data into decisions that actually move the needle.</p>
+    <div class="btns">
+      <a class="btn p mag" href="#projects">View my work</a>
+      <a class="btn o mag" href="#contact">Get in touch</a>
     </div>
-  </header>
+  </div>
+  <div class="code"><div class="win" id="win">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <pre class="mono" id="cd"></pre>
+  </div></div>
+  <div class="scroll"></div>
+</div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h3>Hi, my name is</h3>
-        <h1>Sajid Ahmed Kasmani.</h1>
-        <h2>Full Stack Developer & Data Scientist.</h2>
-        <p>
-          I specialize in building end-to-end web applications and leveraging data-driven analytics to solve complex business problems.
-        </p>
-        <div class="btn-group">
-          <a href="#projects" class="btn btn-primary"><i class="fas fa-code"></i> View Work</a>
-          <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Get In Touch</a>
-        </div>
-      </div>
+<div class="marq"><div class="track" id="trk"></div></div>
+
+<section id="about"><div class="wrap">
+  <h2 class="rv">Web meets data, <em>lowkey my whole thing</em></h2>
+  <div class="about">
+    <div class="rv">
+      <p>Hello! I’m <strong>Sajid Ahmed Kasmani</strong>, a software developer and data enthusiast based in Pakistan and a proud <strong>SMIT alumnus</strong>. I work where web development meets data analytics.</p>
+      <p>From dynamic interfaces in <strong>React and Next.js</strong>, to backends in <strong>Laravel and Flask</strong>, to machine learning models that pull insight out of messy data, I like simple solutions to complex problems.</p>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title"><span>01.</span> About Me</h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>
-            Hello! I'm <strong>Sajid Ahmed Kasmani</strong>, a passionate software developer and data enthusiast based in Pakistan. I thrive at the intersection of web development and data analytics.
-          </p>
-          <p>
-            Whether it's building dynamic user interfaces with <strong>React/Next.js</strong>, architecting backends with <strong>Laravel and Python (Flask)</strong>, or running machine learning algorithms to extract insights from raw data, I enjoy crafting simple solutions for complex problems.
-          </p>
-          <div class="about-highlights">
-            <div class="highlight-item">
-              <i class="fas fa-graduation-cap"></i> <strong>SMIT Alumni</strong>
-            </div>
-            <div class="highlight-item">
-              <i class="fas fa-server"></i> <strong>Full-Stack Architecture</strong>
-            </div>
-            <div class="highlight-item">
-              <i class="fas fa-chart-line"></i> <strong>Data & Analytics</strong>
-            </div>
-            <div class="highlight-item">
-              <i class="fas fa-database"></i> <strong>Database Design</strong>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="stats rv">
+      <div class="stat"><b data-n="3">0</b><span>Featured projects</span></div>
+      <div class="stat"><b data-n="4">0</b><span>Skill domains</span></div>
+      <div class="stat"><b data-n="23">0</b><span>Tools and technologies</span></div>
+      <div class="stat"><b data-n="2">0</b><span>Worlds: Web and Data</span></div>
     </div>
-  </section>
+  </div>
+</div></section>
 
-  <!-- Tech Stack Section -->
-  <section id="skills">
-    <div class="container">
-      <h2 class="section-title"><span>02.</span> Technical Skills</h2>
-      <div class="skills-grid">
-        
-        <div class="skill-card">
-          <h3><i class="fas fa-laptop-code"></i> Frontend & CMS</h3>
-          <div class="skill-tags">
-            <span class="tag">JavaScript</span>
-            <span class="tag">React.js</span>
-            <span class="tag">Next.js</span>
-            <span class="tag">WordPress</span>
-            <span class="tag">Shopify</span>
-            <span class="tag">HTML/CSS</span>
-          </div>
-        </div>
+<section id="skills"><div class="wrap">
+  <h2 class="rv">The <em>toolbox</em>, fully loaded</h2>
+  <div class="grid">
+    <div class="card tilt rv"><h3>Frontend and CMS</h3><div class="tags"><span class="tag">JavaScript</span><span class="tag">React.js</span><span class="tag">Next.js</span><span class="tag">WordPress</span><span class="tag">Shopify</span><span class="tag">HTML/CSS</span></div></div>
+    <div class="card tilt rv"><h3>Backend engineering</h3><div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">REST APIs</span></div></div>
+    <div class="card tilt rv"><h3>Data science and AI</h3><div class="tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Scikit-Learn</span><span class="tag">EDA</span><span class="tag">Data Cleaning</span></div></div>
+    <div class="card tilt rv"><h3>Databases and tools</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span><span class="tag">Jupyter</span></div></div>
+  </div>
+</div></section>
 
-        <div class="skill-card">
-          <h3><i class="fas fa-server"></i> Backend Engineering</h3>
-          <div class="skill-tags">
-            <span class="tag">PHP</span>
-            <span class="tag">Laravel</span>
-            <span class="tag">Python</span>
-            <span class="tag">Flask</span>
-            <span class="tag">REST APIs</span>
-          </div>
-        </div>
+<section id="projects"><div class="wrap">
+  <h2 class="rv">Stuff I built <em>(and kinda love)</em></h2>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+    <div class="card tilt proj rv"><div class="ic">🛒</div><h3>Full-Stack E-Commerce Platform</h3><p>An enterprise-ready online store with custom product catalogs, user authentication and admin controls.</p><div class="tech mono"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>Tailwind</span></div><a href="https://github.com/sajidahmedkasmani" target="_blank" rel="noopener">View on GitHub</a></div>
+    <div class="card tilt proj rv"><div class="ic">📊</div><h3>Data Exploratory Analysis Pipeline</h3><p>An interactive Python pipeline that cleans and visualizes complex datasets to surface trends, missing values and business insights.</p><div class="tech mono"><span>Python</span><span>Pandas</span><span>Matplotlib</span><span>Jupyter</span></div><a href="https://github.com/sajidahmedkasmani" target="_blank" rel="noopener">View on GitHub</a></div>
+    <div class="card tilt proj rv"><div class="ic">🤖</div><h3>Machine Learning API Microservice</h3><p>A lightweight Flask REST service that serves predictive model inferences to web frontends in real time.</p><div class="tech mono"><span>Flask</span><span>Scikit-Learn</span><span>Python</span><span>JSON API</span></div><a href="https://github.com/sajidahmedkasmani" target="_blank" rel="noopener">View on GitHub</a></div>
+  </div>
+</div></section>
 
-        <div class="skill-card">
-          <h3><i class="fas fa-brain"></i> Data Science & AI</h3>
-          <div class="skill-tags">
-            <span class="tag">Pandas</span>
-            <span class="tag">NumPy</span>
-            <span class="tag">Matplotlib</span>
-            <span class="tag">Scikit-Learn</span>
-            <span class="tag">EDA</span>
-            <span class="tag">Data Cleaning</span>
-          </div>
-        </div>
+<section id="contact"><div class="wrap contact">
+  <h2 class="rv">Let’s build something <em>actually fire</em></h2>
+  <p class="rv">Got a full-stack idea, a data problem, or just wanna connect? Slide into my inbox.</p>
+  <a class="btn p mag rv" href="mailto:sajidahmedkasmani@gmail.com">Say hello</a>
+  <div class="soc rv">
+    <a href="https://www.linkedin.com/in/sajid-ahmed-kasmani-8a458636b" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+    <a href="https://github.com/sajidahmedkasmani" target="_blank" rel="noopener" aria-label="GitHub">gh</a>
+    <a href="https://www.facebook.com/sajid.ahmed.kasmani" target="_blank" rel="noopener" aria-label="Facebook">fb</a>
+    <a href="https://www.instagram.com/sajidahmed_zahid" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+    <a href="https://www.threads.net/@sajidahmed_zahid" target="_blank" rel="noopener" aria-label="Threads">@</a>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">Designed and built by Sajid Ahmed Kasmani © 2026</div></footer>
 
-        <div class="skill-card">
-          <h3><i class="fas fa-database"></i> Databases & Tools</h3>
-          <div class="skill-tags">
-            <span class="tag">MySQL</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">Git</span>
-            <span class="tag">GitHub</span>
-            <span class="tag">VS Code</span>
-            <span class="tag">Jupyter</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="container">
-      <h2 class="section-title"><span>03.</span> Featured Projects</h2>
-      <div class="projects-grid">
-
-        <div class="project-card">
-          <div class="project-header">
-            <i class="far fa-folder folder-icon"></i>
-            <div class="project-links">
-              <a href="https://github.com/sajidahmedkasmani" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <h3>Full-Stack E-Commerce Platform</h3>
-          <p>An enterprise-ready online store platform featuring custom product catalogs, user authentication, and administrative controls.</p>
-          <div class="project-tech">
-            <span>Laravel</span>
-            <span>PHP</span>
-            <span>MySQL</span>
-            <span>Tailwind</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <i class="far fa-folder folder-icon"></i>
-            <div class="project-links">
-              <a href="https://github.com/sajidahmedkasmani" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
-          </div>
-          <h3>Data Exploratory Analysis Pipeline</h3>
-          <p>An interactive Python pipeline processing and visualizing complex datasets to highlight trends, missing values, and business insights.</p>
-          <div class="project-tech">
-            <span>Python</span>
-            <span>Pandas</span>
-            <span>Matplotlib</span>
-            <span>Jupyter</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <i class="far fa-folder folder-icon"></i>
-            <div class="project-links">
-              <a href="https://github.com/sajidahmedkasmani" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-            </div>
-          </div>
-          <h3>Machine Learning API Microservice</h3>
-          <p>A lightweight REST service using Flask to serve predictive analytics model inferences to web frontends in real-time.</p>
-          <div class="project-tech">
-            <span>Flask</span>
-            <span>Scikit-Learn</span>
-            <span>Python</span>
-            <span>JSON API</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact">
-        <h2 class="section-title" style="justify-content: center;"><span>04.</span> What's Next?</h2>
-        <h2>Get In Touch</h2>
-        <p>
-          Whether you have a full-stack project idea, data analytics inquiry, or just want to connect, feel free to drop me a message!
-        </p>
-        <a href="mailto:sajidahmedkasmani@gmail.com" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Say Hello</a>
-        
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/sajid-ahmed-kasmani-8a458636b" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/sajidahmedkasmani" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-          <a href="https://www.facebook.com/sajid.ahmed.kasmani" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/sajidahmed_zahid" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.threads.net/@sajidahmed_zahid" target="_blank" class="social-icon"><i class="fas fa-at"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>Designed & Built by Sajid Ahmed Kasmani &copy; 2026</p>
-    </div>
-  </footer>
-
-  <!-- JavaScript for Mobile Menu & Interactions -->
-  <script>
-    const menuToggle = id = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    // Close menu when clicking link on mobile
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-      });
-    });
-  </script>
+<script>
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const touch=matchMedia('(pointer:coarse)').matches;
+// marquee
+const words=['React','Next.js','Laravel','Flask','Python','Pandas','Scikit-Learn','MySQL','PostgreSQL','Shopify','WordPress','NumPy'];
+document.getElementById('trk').innerHTML=[...words,...words].map(w=>'<span>'+w+'</span>').join('');
+// typed roles
+const roles=['Full Stack Developer','Data Scientist','Laravel Builder','ML Problem Solver'];
+const t=document.getElementById('typed');let ri=0,ci=0,del=false;
+(function tick(){const w=roles[ri];if(rm){t.textContent=w;return}
+ t.textContent=w.slice(0,ci);
+ if(!del&&ci===w.length){del=true;return setTimeout(tick,1400)}
+ if(del&&ci===0){del=false;ri=(ri+1)%roles.length}
+ ci+=del?-1:1;setTimeout(tick,del?35:70)})();
+// code card typing
+const src=[['k','const '],['','sajid = {'],['\n  ',''],['','role: '],['s','"Full Stack + Data"'],['',',\n  '],['','stack: ['],['s','"Laravel"'],['',', '],['s','"React"'],['',', '],['s','"Flask"'],['','],\n  '],['','ml: '],['s','"Scikit-Learn"'],['',',\n  '],['','coffee: '],['n','Infinity'],['',',\n  '],['','available: '],['n','true'],['','\n};\n\n'],['k','sajid'],['','.build('],['s','"your idea"'],['',');']];
+const cd=document.getElementById('cd');
+let html='';
+if(rm){cd.innerHTML=src.map(([c,x])=>c?`<span class="${c}">${x}</span>`:x).join('')}
+else{let i=0,j=0;(function type(){if(i>=src.length)return;const [c,x]=src[i];j++;
+ const part=x.slice(0,j);const done=src.slice(0,i).map(([c2,x2])=>c2?`<span class="${c2}">${x2}</span>`:x2).join('');
+ cd.innerHTML=done+(c?`<span class="${c}">${part}</span>`:part)+'▌';
+ if(j>=x.length){i++;j=0}setTimeout(type,45)})()}
+// scroll progress + reveal + counters
+const prog=document.getElementById('prog');
+addEventListener('scroll',()=>{const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('on');
+ e.target.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n;let v=0;const s=setInterval(()=>{v++;b.textContent=v;if(v>=n)clearInterval(s)},rm?1:900/n)});
+ io.unobserve(e.target)}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*90+'ms';io.observe(el)});
+// pointer effects
+const glow=document.getElementById('glow');
+if(!touch&&!rm){
+ addEventListener('mousemove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
+ document.querySelectorAll('.tilt').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+   c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+   c.style.transform=`perspective(800px) rotateX(${(y/r.height-.5)*-10}deg) rotateY(${(x/r.width-.5)*10}deg) translateY(-4px)`});
+  c.addEventListener('mouseleave',()=>c.style.transform='')});
+ document.querySelectorAll('.mag').forEach(b=>{
+  b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});
+  b.addEventListener('mouseleave',()=>b.style.transform='')});
+ const w=document.getElementById('win');
+ addEventListener('mousemove',e=>{w.style.transform=`rotateY(${(e.clientX/innerWidth-.5)*18}deg) rotateX(${(e.clientY/innerHeight-.5)*-14}deg)`});
+}
+// particle network
+const cv=document.getElementById('bg'),cx=cv.getContext('2d');let W,H,P=[],m={x:-999,y:-999};
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=Array.from({length:Math.min(90,Math.floor(W*H/14000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5}))}
+size();addEventListener('resize',size);
+addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});
+const dot=getComputedStyle(document.documentElement).getPropertyValue('--dot').trim();
+function draw(){cx.clearRect(0,0,W,H);
+ for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+  const dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);if(d<130){p.x+=dx/d*1.6;p.y+=dy/d*1.6}
+  cx.fillStyle=`rgba(${dot},.6)`;cx.beginPath();cx.arc(p.x,p.y,1.6,0,6.3);cx.fill()}
+ for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const d=Math.hypot(P[i].x-P[j].x,P[i].y-P[j].y);
+  if(d<120){cx.strokeStyle=`rgba(255,77,141,${.28*(1-d/120)})`;cx.beginPath();cx.moveTo(P[i].x,P[i].y);cx.lineTo(P[j].x,P[j].y);cx.stroke()}
+  }
+ for(const p of P){const d=Math.hypot(p.x-m.x,p.y-m.y);if(d<160){cx.strokeStyle=`rgba(34,211,238,${.5*(1-d/160)})`;cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(m.x,m.y);cx.stroke()}}
+ requestAnimationFrame(draw)}
+if(!rm)draw();
+</script>
 </body>
 </html>
